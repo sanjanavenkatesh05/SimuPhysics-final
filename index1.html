@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SimuPhysics</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="sidebar" id="sidebar">
+            <button class="new-chat" title="New Chat">
+                <i class="fa-regular fa-plus"></i>
+            </button>
+            <button id="toggle-sidebar" class="toggle-btn" title="Toggle Sidebar">
+                <i class="fas fa-bars" style="transition: transform 0.3s ease;"></i>
+            </button>
+            <div class="history-section">
+                <ul id="history-list"></ul>
+                <button id="clear-history" class="clear-btn" title="Clear History">
+                    <i class="fa fa-trash"></i>
+                </button>
+            </div>
+        </div>
+
+        <!--Loading Screen -->
+        <div class="loading-screen hidden" id="loading-screen">
+            <div class="loader">
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+                <div class="circle"></div>
+            </div>
+            <p>Loading simulation...</p>
+        </div>
+
+        <div class="content" id="initial-content">
+            <!--Centered Logo + Title Above Chatbox -->
+            <div class="app-header">
+                <img src="logo.png" alt="SimuPhysics Logo" class="app-logo">           
+            </div>
+
+            <div class="search-container">
+                <div class="search-box">
+                    <input type="text" id="search-input" placeholder="Generate the simulations ">
+                    <button id="search-button">
+                        <i class="fa-solid fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="content hidden" id="simulation-content">
+            <div class="prompt-display">
+                <span id="prompt-text"></span>
+            </div>
+
+            <div class="controllers-area" id="controllers-area"></div>
+
+            <div class="simulation-container">
+                <div id="simulation-placeholder"></div>
+                <div class="controls">
+                    <button id="resetBtn" class="reset">
+                        <i class="fa-solid fa-rotate-right"></i>
+                    </button>
+                    <button id="playPauseBtn" class="play">
+                        <i class="fa-solid fa-play"></i>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Solution Section -->
+            <div id="solution-container" class="solution-container">
+                <h2>Solution :</h2>
+                <div class="solution-content">
+                    <p><strong>Example: Projectile Motion</strong></p>
+                    <p>Step 1: Resolve initial velocity into components.</p>
+                    <p>v_x = v * cos(θ)</p>
+                    <p>v_y = v * sin(θ)</p>
+                    <p>Step 2: Calculate time of flight.</p>
+                    <p>t = (2 * v_y) / g</p>
+                    <p>Step 3: Calculate range.</p>
+                    <p>R = v_x * t</p>
+                    <p>Step 4: Maximum height.</p>
+                    <p>H = (v_y²) / (2g)</p>
+                    <p><strong>Additional Details:</strong></p>
+                    <p>The projectile motion problem involves analyzing the motion of an object launched into the air, subject only to gravity. The initial velocity vector is broken into horizontal (v_x) and vertical (v_y) components using trigonometric functions, where θ is the launch angle relative to the horizontal.</p>
+                    <p><strong>Assumptions:</strong></p>
+                    <ul>
+                        <li>Air resistance is negligible.</li>
+                        <li>Gravity (g) is constant at approximately 9.81 m/s².</li>
+                        <li>The launch and landing points are at the same height (y = 0).</li>
+                    </ul>
+                    <p><strong>Step-by-Step Derivation:</strong></p>
+                    <p>1. <strong>Horizontal Motion:</strong> The horizontal component of velocity (v_x) remains constant since there are no horizontal forces (ignoring air resistance). Thus, the horizontal distance (range) is calculated as R = v_x * t, where t is the total time of flight.</p>
+                    <p>2. <strong>Vertical Motion:</strong> The vertical component of velocity (v_y) is affected by gravity. The time to reach the peak (where vertical velocity is zero) is t_peak = v_y / g. Since the motion is symmetric, the total time of flight is twice this: t = 2 * v_y / g.</p>
+                    <p>3. <strong>Maximum Height:</strong> At the peak, the vertical kinetic energy is converted to potential energy. Using the kinematic equation v² = u² + 2as with final velocity v = 0 at the peak, initial velocity u = v_y, and acceleration a = -g, we get H = (v_y²) / (2g).</p>
+                    <p>4. <strong>Practical Example:</strong> Suppose a projectile is launched with an initial velocity v = 20 m/s at an angle θ = 30°. First, calculate v_x = 20 * cos(30°) ≈ 17.32 m/s and v_y = 20 * sin(30°) = 10 m/s. Then, time of flight t = (2 * 10) / 9.81 ≈ 2.04 s. Range R = 17.32 * 2.04 ≈ 35.33 m. Maximum height H = (10²) / (2 * 9.81) ≈ 5.10 m.</p>
+                    <p><strong>Additional Notes:</strong></p>
+                    <p>This solution assumes a flat, level surface and no external forces other than gravity. For more complex scenarios, such as those involving air resistance or varying terrain, additional calculations or numerical methods may be required.</p>
+                    <p><strong>Further Considerations:</strong></p>
+                    <p>- <strong>Energy Conservation:</strong> The total mechanical energy (kinetic + potential) is conserved in the absence of air resistance. At launch, the kinetic energy is (1/2)mv², and at the peak, the energy is converted to potential energy mgh.</p>
+                    <p>- <strong>Trajectory Shape:</strong> The path of a projectile is a parabola under these ideal conditions, derived from the combination of constant horizontal velocity and uniformly accelerated vertical motion.</p>
+                    <p>- <strong>Applications:</strong> Projectile motion is relevant in various fields, such as ballistics, sports (e.g., basketball, soccer), and engineering (e.g., designing launch systems).</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="matter.js"></script>
+    <script src="p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.19"></script>
+    <script src="projectile.js"></script>
+</body>
+</html>
