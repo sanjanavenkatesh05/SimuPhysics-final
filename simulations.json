@@ -1,0 +1,843 @@
+[
+  {
+    "id": "sim001",
+    "name": "Joule Heating and Electric Power",
+    "concepts": [
+      "electric power",
+      "Joule heating",
+      "Ohm's law",
+      "resistance",
+      "current",
+      "voltage",
+      "energy conversion"
+    ],
+    "parameters": ["voltage", "current"],
+    "description": "Simulates Joule heating in a resistor. Shows the relationship between voltage, current, power (P=VI), and the resulting temperature increase and glow of the resistor over time.",
+    "script": "Current_power_heating.js"
+  },
+  {
+    "id": "sim002",
+    "name": "Electron Drift Velocity",
+    "concepts": [
+      "drift velocity",
+      "electric current",
+      "electric field",
+      "electron motion",
+      "thermal velocity",
+      "resistivity",
+      "current density"
+    ],
+    "parameters": ["electricField", "temperature", "material"],
+    "description": "Visualizes the motion of electrons in a conductor under an electric field. Differentiates between random thermal velocity and the slow, net drift velocity that constitutes current.",
+    "script": "Current_drift_velocity.js"
+  },
+  {
+    "id": "sim003",
+    "name": "Electric Dipole Field & Potential",
+    "concepts": [
+      "electric dipole",
+      "electric field",
+      "electric potential",
+      "field lines",
+      "dipole moment",
+      "superposition"
+    ],
+    "parameters": ["chargeMagnitude", "dipoleDistance"],
+    "description": "Simulates the electric field and electric potential surrounding an electric dipole (two equal and opposite charges). Allows measuring field and potential at any point with the mouse.",
+    "script": "Electo_electric_dipole.js"
+  },
+  {
+    "id": "sim004",
+    "name": "Electric Field & Potential (Two Charges)",
+    "concepts": [
+      "electric field",
+      "electric potential",
+      "Coulomb's law",
+      "superposition",
+      "field lines",
+      "point charge"
+    ],
+    "parameters": ["charge1", "charge2", "initialDistance", "k"],
+    "description": "Visualizes the electric field lines and calculates the net electric field and potential at the mouse cursor's position due to two point charges. Demonstrates the superposition principle.",
+    "script": "Electro_EF_EP_at_a_point.js"
+  },
+  {
+    "id": "sim005",
+    "name": "Coulomb's Law (Two Charges)",
+    "concepts": [
+      "Coulomb's law",
+      "electrostatic force",
+      "attraction",
+      "repulsion",
+      "electric field lines",
+      "point charge"
+    ],
+    "parameters": ["charge1", "charge2", "initialDistance"],
+    "description": "Simulates the electrostatic force (attraction or repulsion) between two movable charges according to Coulomb's Law. Displays the force vectors and the resulting motion.",
+    "script": "Electro_coulombs_law_elctricField_lines.js"
+  },
+  {
+    "id": "sim006",
+    "name": "Wheatstone Bridge",
+    "concepts": [
+      "Wheatstone bridge",
+      "balanced bridge",
+      "resistance",
+      "voltage divider",
+      "galvanometer",
+      "electric circuit"
+    ],
+    "parameters": ["voltage", "R1", "R2", "R3", "R4"],
+    "description": "Simulates a Wheatstone bridge circuit. Allows adjusting resistors to find the balanced condition (zero galvanometer current) and calculate an unknown resistance.",
+    "script": "Current_wheatstone_bridge.js"
+  },
+  {
+    "id": "sim007",
+    "name": "Force on a Test Charge (Multiple Charges)",
+    "concepts": [
+      "electrostatic force",
+      "superposition principle",
+      "Coulomb's law",
+      "vector addition",
+      "test charge"
+    ],
+    "parameters": ["testCharge", "charge1", "charge2", "charge3", "k"],
+    "description": "Demonstrates the superposition principle by calculating the net electrostatic force on a draggable test charge due to three fixed source charges. Visualizes all individual force vectors and the resultant net force vector.",
+    "script": "Electro_force_multiple_charges.js"
+  },
+  {
+    "id": "sim008",
+    "name": "Gravitational Orbit (Satellite)",
+    "concepts": [
+      "gravitation",
+      "Newton's law of gravitation",
+      "orbital mechanics",
+      "circular motion",
+      "centripetal force",
+      "satellite"
+    ],
+    "parameters": [
+      "centralMass",
+      "orbitingMass",
+      "orbitRadius",
+      "orbitalSpeed"
+    ],
+    "description": "Simulates a satellite (orbiting mass) in orbit around a central body. Demonstrates the gravitational force providing the centripetal force required for circular motion. Allows adjustment of parameters to see stable and unstable orbits.",
+    "script": "Gravitation_satalite_movement.js"
+  },
+  {
+    "id": "sim009",
+    "name": "Capacitor Combinations (Series/Parallel)",
+    "concepts": [
+      "capacitance",
+      "capacitors in series",
+      "capacitors in parallel",
+      "equivalent capacitance",
+      "electric circuits"
+    ],
+    "parameters": ["c1", "c2", "c3", "configuration"],
+    "description": "Calculates and visualizes the equivalent capacitance for three capacitors arranged in either a series or parallel configuration. Allows changing individual capacitances and toggling the configuration.",
+    "script": "Capacitors_combination.js"
+  },
+  {
+    "id": "sim010",
+    "name": "Circuit Builder (Series/Parallel)",
+    "concepts": [
+      "series circuit",
+      "parallel circuit",
+      "Ohm's law",
+      "equivalent resistance",
+      "voltage",
+      "current",
+      "power"
+    ],
+    "parameters": [
+      "circuitType",
+      "resistor1",
+      "resistor2",
+      "resistor3",
+      "voltage"
+    ],
+    "description": "Analyzes a circuit with three resistors in either series or parallel. Calculates total resistance, total current, and the individual voltage, current, and power for each resistor based on Ohm's law.",
+    "script": "Current_circuit_builder.js"
+  },
+  {
+    "id": "sim011",
+    "name": "2D Relative Motion",
+    "concepts": [
+      "relative velocity",
+      "kinematics",
+      "2D motion",
+      "vector subtraction",
+      "frames of reference"
+    ],
+    "parameters": [
+      "velocityA_x",
+      "velocityA_y",
+      "velocityB_x",
+      "velocityB_y"
+    ],
+    "description": "Analyzes the motion of two objects (A and B) moving independently. It calculates and visualizes the velocity of object B relative to object A (V_BA = V_B - V_A) using vector subtraction.",
+    "script": "kinematics_2d_relative_motion.js"
+  },
+  {
+    "id": "sim012",
+    "name": "Block Motion with Angled Force",
+    "concepts": [
+      "Newton's second law",
+      "forces",
+      "friction",
+      "normal force",
+      "force components",
+      "free body diagram"
+    ],
+    "parameters": ["appliedForce", "forceAngle", "friction", "blockMass"],
+    "description": "Simulates a block on a surface being pulled or pushed by a force applied at an angle. It calculates the net force by considering components of the applied force, normal force, weight, and friction.",
+    "script": "NLM_block_motion_at_angle.js"
+  },
+  {
+    "id": "sim013",
+    "name": "Projectile Motion (Velocity & Angle)",
+    "concepts": [
+      "kinematics",
+      "projectile motion",
+      "trajectory",
+      "velocity components",
+      "motion in 2D",
+      "gravity"
+    ],
+    "parameters": ["blockHeight", "velocity", "angle"],
+    "description": "Simulates projectile motion where the launch velocity and angle can be set via sliders. It calculates and displays the trajectory, real-time velocity components (Vx, Vy), and kinetic energy.",
+    "script": "Kinematics_projectile.js"
+  },
+  {
+    "id": "sim014",
+    "name": "1D Non-Uniform Motion",
+    "concepts": [
+      "kinematics",
+      "1D motion",
+      "acceleration",
+      "non-uniform motion",
+      "equations of motion",
+      "velocity-time graph"
+    ],
+    "parameters": ["initialVelocity", "acceleration"],
+    "description": "Simulates an object moving in one dimension with constant acceleration. It visualizes the motion and plots a real-time velocity-time graph, demonstrating v = u + at and s = ut + ½at².",
+    "script": "kinematics_1d_non_uniform_motion.js"
+  },
+  {
+    "id": "sim015",
+    "name": "Graphical Analysis of 1D Motion",
+    "concepts": [
+      "kinematics",
+      "graphical analysis",
+      "position-time graph",
+      "velocity-time graph",
+      "acceleration-time graph",
+      "constant acceleration"
+    ],
+    "parameters": ["initialVelocity", "acceleration"],
+    "description": "Simulates 1D motion with constant acceleration and provides a comprehensive graphical analysis. It simultaneously plots position-time (s-t), velocity-time (v-t), and acceleration-time (a-t) graphs.",
+    "script": "kinematics_1d_graphical_analysis.js"
+  },
+  {
+    "id": "sim016",
+    "name": "Gravitational Attraction (Two Bodies)",
+    "concepts": [
+      "Newton's law of gravitation",
+      "gravitational force",
+      "two-body problem",
+      "acceleration",
+      "Newton's third law"
+    ],
+    "parameters": ["mass1", "mass2", "initialDistance", "G"],
+    "description": "Simulates Newton's law of universal gravitation between two bodies that start from rest. It shows them accelerating towards each other due to their mutual gravitational attraction.",
+    "script": "Gravitational_two_body_stationary.js"
+  },
+  {
+    "id": "sim017",
+    "name": "General 2D Motion",
+    "concepts": [
+      "kinematics",
+      "2D motion",
+      "constant acceleration",
+      "velocity components",
+      "position",
+      "vector motion"
+    ],
+    "parameters": [
+      "initialVelX",
+      "initialVelY",
+      "startX",
+      "startY",
+      "accelX",
+      "accelY"
+    ],
+    "description": "A general-purpose 2D motion simulator where an object's initial position, initial velocity (x and y), and constant acceleration (x and y) can be set. The object moves within bounded walls.",
+    "script": "Kinematics_motion_2D.js"
+  },
+  {
+    "id": "sim018",
+    "name": "Escape Velocity",
+    "concepts": [
+      "escape velocity",
+      "gravitational potential energy",
+      "kinetic energy",
+      "Newton's law of gravitation",
+      "free fall"
+    ],
+    "parameters": [
+      "planetMass",
+      "planetRadius",
+      "launchSpeed",
+      "G",
+      "gravity_accel"
+    ],
+    "description": "Simulates launching a projectile from a planet. If launch speed is below escape velocity (v < v_esc), it falls back. If at or above (v >= v_esc), it escapes.",
+    "script": "Gravitational_escape_velocity.js"
+  },
+  {
+    "id": "sim019",
+    "name": "1D Uniform Motion",
+    "concepts": [
+      "kinematics",
+      "1D motion",
+      "uniform motion",
+      "constant velocity",
+      "position-time graph"
+    ],
+    "parameters": ["velocity", "initialPosition"],
+    "description": "Simulates an object moving in one dimension with constant velocity. It plots a real-time position-time graph and demonstrates the equation x = x₀ + vt.",
+    "script": "Kinematics_1d_uniform_motion.js"
+  },
+  {
+    "id": "sim020",
+    "name": "Free Fall",
+    "concepts": [
+      "free fall",
+      "kinematics",
+      "gravity",
+      "acceleration",
+      "air resistance",
+      "equations of motion"
+    ],
+    "parameters": [
+      "dropHeight",
+      "initialVelocity",
+      "mass",
+      "airResistance",
+      "gravity"
+    ],
+    "description": "Simulates an object in free fall from a specified height. Allows setting initial velocity (e.g., thrown up or down), mass, air resistance, and gravitational acceleration (g).",
+    "script": "Kinematics_free_fall.js"
+  },
+  {
+    "id": "sim021",
+    "name": "Newton's Second Law (F=ma)",
+    "concepts": [
+      "Newton's second law",
+      "force",
+      "mass",
+      "acceleration",
+      "kinematics",
+      "velocity-time graph",
+      "acceleration-time graph"
+    ],
+    "parameters": ["force", "mass"],
+    "description": "Demonstrates Newton's Second Law (F=ma) by applying a constant force to a box of variable mass. It shows the resulting acceleration and plots velocity-time and acceleration-time graphs.",
+    "script": "NLM_second_law.js"
+  },
+  {
+    "id": "sim022",
+    "name": "Uniform Circular Motion (Vectors)",
+    "concepts": [
+      "uniform circular motion",
+      "centripetal acceleration",
+      "tangential velocity",
+      "angular velocity",
+      "period",
+      "frequency",
+      "vectors"
+    ],
+    "parameters": ["circleRadius", "angularVelocity", "objectSize"],
+    "description": "Visualizes an object undergoing uniform circular motion. It displays the tangential velocity vector (constant magnitude, changing direction) and the centripetal acceleration vector (constant magnitude, pointing towards the center).",
+    "script": "NLM_uniform_circular_motion_vectors.js"
+  },
+  {
+    "id": "sim023",
+    "name": "Conical Pendulum (Elliptical Path)",
+    "concepts": [
+      "circular motion",
+      "pendulum",
+      "centripetal force",
+      "tension",
+      "angular velocity",
+      "elliptical motion"
+    ],
+    "parameters": ["ellipseA", "ellipseB", "ballRadius", "angularVelocity"],
+    "description": "Simulates a conical pendulum where the bob moves in a horizontal elliptical path (a generalization of circular motion). Visualizes the path and the string.",
+    "script": "Rotation_circular_conical_pendulum.js"
+  },
+  {
+    "id": "sim024",
+    "name": "Motion on Inclined Plane with Friction",
+    "concepts": [
+      "inclined plane",
+      "Newton's laws",
+      "friction",
+      "normal force",
+      "gravitational force components",
+      "applied force"
+    ],
+    "parameters": [
+      "friction",
+      "appliedForce",
+      "planeAngle",
+      "blockSize"
+    ],
+    "description": "Simulates a block moving on an inclined plane with friction. Allows applying an external horizontal force and adjusting friction and incline angle.",
+    "script": "NLM_motion_inclined_plane_friction.js"
+  },
+  {
+    "id": "sim025",
+    "name": "Simple Pendulum",
+    "concepts": [
+      "simple pendulum",
+      "simple harmonic motion (approximation)",
+      "period",
+      "gravity",
+      "tension",
+      "conservation of energy"
+    ],
+    "parameters": ["pendulumLength", "initialAngle"],
+    "description": "Simulates a simple pendulum swinging under gravity. Allows adjustment of the pendulum length and initial angle. Minimal friction is included for a more realistic swing.",
+    "script": "NLM_pendulum.js"
+  },
+  {
+    "id": "sim026",
+    "name": "Block Motion with Friction",
+    "concepts": [
+      "Newton's laws",
+      "friction (static and kinetic)",
+      "applied force",
+      "net force",
+      "acceleration"
+    ],
+    "parameters": ["appliedForce", "friction", "blockMass"],
+    "description": "Simulates a block on a horizontal surface subjected to an applied force and friction. Demonstrates how friction opposes motion and affects acceleration.",
+    "script": "NLM_friction_block_motion.js"
+  },
+  {
+    "id": "sim027",
+    "name": "Multiple Blocks Friction",
+    "concepts": [
+      "friction (static and kinetic)",
+      "Newton's laws",
+      "stacked objects",
+      "normal force",
+      "free body diagrams"
+    ],
+    "parameters": [
+      "force1",
+      "force2",
+      "force3",
+      "surfaceFriction1",
+      "surfaceFriction2",
+      "surfaceFriction3",
+      "mass1",
+      "mass2",
+      "mass3"
+    ],
+    "description": "Simulates the interaction of three stacked blocks on a surface, each potentially subject to its own applied force and friction coefficient. Demonstrates inter-block friction.",
+    "script": "NLM_multiple_surfaces_friction.js"
+  },
+  {
+    "id": "sim028",
+    "name": "Rolling Ball (Cycloid Path)",
+    "concepts": [
+      "rolling motion",
+      "rotation",
+      "translation",
+      "cycloid",
+      "angular velocity",
+      "linear velocity"
+    ],
+    "parameters": ["ballRadius", "ballSpeed", "MAX_TRAIL_POINTS"],
+    "description": "Simulates a ball rolling without slipping on a horizontal surface. A point on the rim traces out a cycloid path, which is visualized.",
+    "script": "Rotation_rolling_ball.js"
+  },
+  {
+    "id": "sim029",
+    "name": "General 2D Motion (NLM duplicate)",
+    "concepts": [
+      "kinematics",
+      "2D motion",
+      "constant acceleration",
+      "velocity components",
+      "position",
+      "vector motion",
+      "Newton's laws (implied by force)"
+    ],
+    "parameters": [
+      "initialVelX",
+      "initialVelY",
+      "startX",
+      "startY",
+      "accelX",
+      "accelY"
+    ],
+    "description": "A general-purpose 2D motion simulator where an object's initial position, initial velocity (x and y), and constant acceleration (x and y) can be set. The object moves within bounded walls. (Note: Appears identical to Kinematics_motion_2D.js)",
+    "script": "NLM_motion_2D.js"
+  },
+  {
+    "id": "sim030",
+    "name": "Projectile Motion (NLM duplicate)",
+    "concepts": [
+      "kinematics",
+      "projectile motion",
+      "trajectory",
+      "velocity components",
+      "motion in 2D",
+      "gravity",
+      "Newton's laws (implied by gravity)"
+    ],
+    "parameters": ["blockHeight", "velocity", "angle"],
+    "description": "Simulates projectile motion where the launch velocity and angle can be set via sliders. It calculates and displays the trajectory, real-time velocity components (Vx, Vy), and kinetic energy. (Note: Appears identical to Kinematics_projectile.js)",
+    "script": "NLM_projectile.js"
+  },
+  {
+    "id": "sim031",
+    "name": "Inelastic Collision (1D)",
+    "concepts": [
+      "inelastic collision",
+      "momentum conservation",
+      "kinetic energy loss",
+      "coefficient of restitution"
+    ],
+    "parameters": [
+      "ball1Mass",
+      "ball2Mass",
+      "ball1VelX",
+      "ball2VelX",
+      "stickiness"
+    ],
+    "description": "Simulates a 1D collision between two balls where kinetic energy is not conserved. The 'stickiness' parameter controls the degree of inelasticity, from perfectly elastic (0) to perfectly inelastic (1, balls stick together).",
+    "script": "WPE_inelastic_collision.js"
+  },
+  {
+    "id": "sim032",
+    "name": "Uniform Circular Motion (Basic)",
+    "concepts": [
+      "uniform circular motion",
+      "angular velocity",
+      "period",
+      "frequency",
+      "radius"
+    ],
+    "parameters": ["circleRadius", "angularVelocity", "objectSize"],
+    "description": "Visualizes an object moving in a circle at a constant angular velocity. Includes a trail to show the path.",
+    "script": "Rotation_uniform_circular_motion.js"
+  },
+  {
+    "id": "sim033",
+    "name": "Simple Harmonic Motion (SHM) on Ground",
+    "concepts": [
+      "simple harmonic motion (SHM)",
+      "oscillation",
+      "amplitude",
+      "frequency",
+      "period",
+      "spring"
+    ],
+    "parameters": ["amplitude", "frequency", "period"],
+    "description": "Simulates simple harmonic motion of a mass attached to a fixed block via a spring, oscillating horizontally on a surface. Amplitude, frequency, and period are adjustable.",
+    "script": "shm-ground.js"
+  },
+  {
+    "id": "sim034",
+    "name": "Conical Pendulum (Elliptical Path)",
+    "concepts": [
+      "circular motion",
+      "pendulum",
+      "centripetal force",
+      "tension",
+      "angular velocity",
+      "elliptical motion"
+    ],
+    "parameters": [
+      "ellipseA",
+      "ellipseB",
+      "ballRadius",
+      "angularVelocity"
+    ],
+    "description": "Simulates a conical pendulum where the bob moves in a horizontal elliptical path (a generalization of circular motion). Visualizes the path and the string.",
+    "script": "Rotation_circular_conical_pendulum.js"
+  },
+  {
+    "id": "sim035",
+    "name": "Torque and Angular Acceleration",
+    "concepts": [
+      "torque",
+      "angular acceleration",
+      "moment of inertia",
+      "rotational motion",
+      "lever arm",
+      "force components"
+    ],
+    "parameters": [
+      "rodLength",
+      "forceMagnitude",
+      "forceAngle",
+      "forcePosition",
+      "rodMass"
+    ],
+    "description": "Simulates the effect of applying a force at a specific point and angle on a rod pivoted at one end. Demonstrates how torque (τ = r × F) causes angular acceleration (α = τ / I).",
+    "script": "Rotation_torque_simulation.js"
+  },
+  {
+    "id": "sim036",
+    "name": "Newton's Second Law (F=ma)",
+    "concepts": [
+      "Newton's second law",
+      "force",
+      "mass",
+      "acceleration",
+      "kinematics",
+      "velocity-time graph",
+      "acceleration-time graph"
+    ],
+    "parameters": ["force", "mass"],
+    "description": "Demonstrates Newton's Second Law (F=ma) by applying a constant force to a box of variable mass. It shows the resulting acceleration and plots velocity-time and acceleration-time graphs.",
+    "script": "NLM_second_law.js"
+  },
+  {
+    "id": "sim037",
+    "name": "Newton's Cradle",
+    "concepts": [
+      "momentum conservation",
+      "energy conservation",
+      "elastic collision",
+      "pendulum"
+    ],
+    "parameters": ["ballCount", "ballSize", "stringLength", "ballSpacing"],
+    "description": "Simulates Newton's Cradle, demonstrating the conservation of momentum and kinetic energy through a series of elastic collisions between suspended spheres.",
+    "script": "WPE_momentum_tranfer_newton_cradel.js"
+  },
+  {
+    "id": "sim038",
+    "name": "Elastic Collision (1D)",
+    "concepts": [
+      "elastic collision",
+      "momentum conservation",
+      "kinetic energy conservation",
+      "coefficient of restitution"
+    ],
+    "parameters": [
+      "ball1Mass",
+      "ball2Mass",
+      "ball1VelX",
+      "ball2VelX",
+      "restitution"
+    ],
+    "description": "Simulates a 1D collision between two balls. The coefficient of restitution can be adjusted, with 1.0 representing a perfectly elastic collision where kinetic energy is conserved.",
+    "script": "WPE_elastic_collision.js"
+  },
+  {
+    "id": "sim039",
+    "name": "Uniform Circular Motion (Vectors)",
+    "concepts": [
+      "uniform circular motion",
+      "centripetal acceleration",
+      "tangential velocity",
+      "angular velocity",
+      "period",
+      "frequency",
+      "vectors"
+    ],
+    "parameters": ["circleRadius", "angularVelocity", "objectSize"],
+    "description": "Visualizes an object undergoing uniform circular motion. It displays the tangential velocity vector (constant magnitude, changing direction) and the centripetal acceleration vector (constant magnitude, pointing towards the center).",
+    "script": "NLM_uniform_circular_motion_vectors.js"
+  },
+  {
+    "id": "sim041",
+    "name": "Center of Mass (Person on Plank)",
+    "concepts": [
+      "center of mass",
+      "conservation of momentum",
+      "frictionless motion",
+      "Newton's third law"
+    ],
+    "parameters": [
+      "carVelocity",
+      "carMass",
+      "plankMass",
+      "plankLength"
+    ],
+    "description": "Simulates a person walking on a frictionless plank. Demonstrates conservation of momentum: as the person moves in one direction, the plank moves in the opposite direction to keep the center of mass of the system stationary (or moving at a constant velocity if initially set).",
+    "script": "NLM_center_of_mass.js"
+  },
+  {
+    "id": "sim042",
+    "name": "Newton's First Law (Inertia)",
+    "concepts": [
+      "Newton's first law",
+      "inertia",
+      "net force",
+      "constant velocity",
+      "rest"
+    ],
+    "parameters": ["appliedForce", "initialVelocity"],
+    "description": "Demonstrates Newton's First Law (Law of Inertia). An object remains at rest or continues with constant velocity unless acted upon by a net external force. Allows applying a force or setting an initial velocity.",
+    "script": "NLM_first_law.js"
+  },
+  {
+    "id": "sim043",
+    "name": "Free Fall (NLM)",
+    "concepts": [
+      "free fall",
+      "Newton's laws",
+      "gravity",
+      "acceleration",
+      "air resistance",
+      "kinematics"
+    ],
+    "parameters": [
+      "dropHeight",
+      "initialVelocity",
+      "mass",
+      "airResistance",
+      "gravity"
+    ],
+    "description": "Simulates an object in free fall under gravity, applying Newton's laws. Allows setting initial velocity, mass, air resistance, and gravitational acceleration (g). Includes live data display.",
+    "script": "NLM_free_fall.js"
+  },
+  {
+    "id": "sim044",
+    "name": "General 2D Motion (NLM)",
+    "concepts": [
+      "Newton's laws",
+      "2D motion",
+      "constant acceleration",
+      "force",
+      "mass",
+      "vector motion"
+    ],
+    "parameters": [
+      "initialVelX",
+      "initialVelY",
+      "startX",
+      "startY",
+      "accelX",
+      "accelY"
+    ],
+    "description": "A general-purpose 2D motion simulator viewed through Newton's Laws, where constant acceleration implies a constant net force. Initial position, velocity, and acceleration can be set.",
+    "script": "NLM_motion_2D.js"
+  },
+  {
+    "id": "sim045",
+    "name": "Motion on Inclined Plane with Friction (NLM)",
+    "concepts": [
+      "inclined plane",
+      "Newton's laws",
+      "friction",
+      "normal force",
+      "gravitational force components",
+      "applied force"
+    ],
+    "parameters": [
+      "friction",
+      "appliedForce",
+      "planeAngle",
+      "blockSize"
+    ],
+    "description": "Simulates a block moving on an inclined plane with friction under the influence of gravity and an optional applied horizontal force, demonstrating Newton's Laws.",
+    "script": "NLM_motion_inclined_plane_friction.js"
+  },
+  {
+    "id": "sim046",
+    "name": "Multiple Blocks Friction (NLM)",
+    "concepts": [
+      "friction (static and kinetic)",
+      "Newton's laws",
+      "stacked objects",
+      "normal force",
+      "free body diagrams",
+      "action-reaction pairs"
+    ],
+    "parameters": [
+      "force1",
+      "force2",
+      "force3",
+      "surfaceFriction1",
+      "surfaceFriction2",
+      "surfaceFriction3",
+      "mass1",
+      "mass2",
+      "mass3"
+    ],
+    "description": "Simulates the interaction of three stacked blocks on a surface, applying Newton's Laws. Each block can have its own applied force, mass, and friction coefficient, illustrating inter-block forces and friction.",
+    "script": "NLM_multiple_surfaces_friction.js"
+  },
+  {
+    "id": "sim047",
+    "name": "Simple Pendulum (NLM)",
+    "concepts": [
+      "simple pendulum",
+      "Newton's laws",
+      "tension",
+      "gravitational force components",
+      "period",
+      "simple harmonic motion (approximation)"
+    ],
+    "parameters": ["pendulumLength", "initialAngle"],
+    "description": "Simulates a simple pendulum swinging under gravity, governed by Newton's Laws (tension and gravity components). Allows adjustment of pendulum length and initial angle.",
+    "script": "NLM_pendulum.js"
+  },
+  {
+    "id": "sim048",
+    "name": "Projectile Motion (NLM)",
+    "concepts": [
+      "projectile motion",
+      "Newton's laws",
+      "gravity",
+      "kinematics",
+      "trajectory",
+      "velocity components"
+    ],
+    "parameters": ["blockHeight", "velocity", "angle"],
+    "description": "Simulates projectile motion under constant gravitational force (Newton's Laws). Launch velocity and angle can be set, displaying trajectory and live data.",
+    "script": "NLM_projectile.js"
+  },
+  {
+    "id": "sim049",
+    "name": "Newton's Second Law (F=ma)",
+    "concepts": [
+      "Newton's second law",
+      "force",
+      "mass",
+      "acceleration",
+      "kinematics",
+      "velocity-time graph",
+      "acceleration-time graph"
+    ],
+    "parameters": ["force", "mass"],
+    "description": "Demonstrates Newton's Second Law (F=ma) by applying a constant force to a box of variable mass. It shows the resulting acceleration and plots velocity-time and acceleration-time graphs.",
+    "script": "NLM_second_law.js"
+  },
+  {
+    "id": "sim050",
+    "name": "Uniform Circular Motion (Vectors - NLM)",
+    "concepts": [
+      "uniform circular motion",
+      "Newton's laws",
+      "centripetal force",
+      "centripetal acceleration",
+      "tangential velocity",
+      "vectors"
+    ],
+    "parameters": ["circleRadius", "angularVelocity", "objectSize"],
+    "description": "Visualizes uniform circular motion, displaying tangential velocity and centripetal acceleration vectors. Implies a constant net force (centripetal force) directed towards the center, consistent with Newton's Laws.",
+    "script": "NLM_uniform_circular_motion_vectors.js"
+  }
+
+]

@@ -1,0 +1,30 @@
+{
+  "name": "simuphysics",
+  "version": "1.0.0",
+  "description": "",
+  "keywords": [],
+  "homepage": "https://github.com/sanjanavenkatesh05/SimuPhysics#readme",
+  "bugs": {
+    "url": "https://github.com/sanjanavenkatesh05/SimuPhysics/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sanjanavenkatesh05/SimuPhysics.git"
+  },
+  "license": "ISC",
+  "author": "",
+  "type": "module",
+  "main": "blockonsurface.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "@google/genai": "^1.24.0",
+    "compute-cosine-similarity": "github:compute-io/cosine-similarity",
+    "cors": "^2.8.5",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "fs": "^0.0.1-security",
+    "utils": "^0.3.1"
+  }
+}
