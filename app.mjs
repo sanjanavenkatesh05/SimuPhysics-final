@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 
-
+const prompt_solution_wrapper="please solve this physics problem with complete explaination or explain the physics concept without starting with any other words. i just want the solution.give me response only in text. i do NOT want the meta data. i just want the text. and i dont want it enclosed in any quotes or paranthesis.";
 const ai=new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
 const embeddedSimulations = JSON.parse(fs.readFileSync("./embedded_simulations.json", "utf-8"));
 
@@ -28,7 +28,7 @@ app.listen(port, () => {
 });
 
 
-const simsDirectoryPath = "C:\\simuphysics\\SimuPhysics\\hii";
+const simsDirectoryPath = "C:\\simuphysics\\hii";
 app.use('/sims', express.static(simsDirectoryPath));
 
 // Helper: safely extract text from Gemini responses (if needed later)
@@ -91,17 +91,20 @@ Your entire response must be raw text, starting with [ and ending with ].`;
     model: "gemini-2.5-flash",
     contents: prompt_wrapper
   });
-  const parameters=response.text;//this is a string, needs to be parsed by the browser script
+  const parameters=response.text;//this is a string, needs to be parsed by the browser script, actually it does not 
   console.log(parameters);
-  
-
-
+  let problems=await ai.models.generateContent({
+    model: "gemini-2.5-flash",
+    contents: prompt_solution_wrapper+prompt
+  });  
+  const solutionText = problems.candidates[0].content.parts[0].text;
     // Step 3 — Send back the result
 res.json({
         success: true,
         received: prompt,     // For your history panel
         scriptUrl: scriptUrl,     // The URL the client will load
-       parameters: parameters  // The parameter string from the AI
+       parameters: parameters,  // The parameter string from the AI
+       solution:solutionText
     });
 
   } catch (error) {

@@ -12,6 +12,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const simulationContent = document.getElementById('simulation-content');
     const promptText = document.getElementById('prompt-text');
     const historyContainer = document.getElementById("history");
+    const sol=document.getElementById("solution-output");
+
 
     // --- (ADD THIS) ---
     /**
@@ -142,6 +144,10 @@ document.addEventListener('DOMContentLoaded', function() {
                     const {engine,runner} = startSimulation(simulationParams); 
                     currentEngine=engine;
                     currentRunner=runner;
+                    let solution=data.solution;
+                    console.log(typeof(data.solution));
+                    sol.textContent=JSON.stringify(solution);
+
 
                 } else {
                     console.error("`startSimulation` function not found in loaded script.");

@@ -1,7 +1,7 @@
 {
   "name": "simuphysics",
   "version": "1.0.0",
-  "description": "",
+  "description": "\u0000",
   "keywords": [],
   "homepage": "https://github.com/sanjanavenkatesh05/SimuPhysics#readme",
   "bugs": {
@@ -25,6 +25,7 @@
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "fs": "^0.0.1-security",
+    "node": "^22.21.1",
     "utils": "^0.3.1"
   }
 }
