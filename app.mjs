@@ -16,7 +16,7 @@ app.use(express.json());
 app.use(express.static("public"));
 
 
-const prompt_solution_wrapper="please solve this physics problem with complete explaination or explain the physics concept without starting with any other words. i just want the solution.give me response only in text. i do NOT want the meta data. i just want the text. and i dont want it enclosed in any quotes or paranthesis.";
+const prompt_solution_wrapper="please solve this physics problem with complete explaination or explain the physics concept without starting with any other words. i just want the solution.give me response only in text. i do NOT want the meta data. i just want the text , written in html form (ex <br> for /n etc). and i dont want it enclosed in any quotes or paranthesis. and do not put newline characters like backslash ns";
 const ai=new GoogleGenAI({apiKey: process.env.GEMINI_API_KEY});
 const embeddedSimulations = JSON.parse(fs.readFileSync("./embedded_simulations.json", "utf-8"));
 

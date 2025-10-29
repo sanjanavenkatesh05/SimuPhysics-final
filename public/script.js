@@ -146,7 +146,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     currentRunner=runner;
                     let solution=data.solution;
                     console.log(typeof(data.solution));
-                    sol.textContent=JSON.stringify(solution);
+                    sol.innerHTML=JSON.stringify(solution);
 
 
                 } else {
