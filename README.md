@@ -1,37 +1,79 @@
 # SimuPhysics
 
-SimuPhysics is an educational physics simulation platform that combines a Node.js backend with a browser-based frontend for interactive physics experiences.
+SimuPhysics is a modern educational physics platform that turns natural-language prompts into interactive, visual simulations. Users can describe a concept or problem, receive an AI-generated explanation, and immediately see a matching 2D simulation rendered in the browser.
 
-## 🚀 Deployment
+## Live Demo
 
-The project is now configured for both Render and Vercel.
+Explore the project here:
 
-### Render
+https://simuphysics-final.onrender.com/
 
-1. Push the repository to GitHub.
-2. Create a new Web Service on Render.
-3. Connect the repository and use:
-   - Build command: `npm install`
-   - Start command: `node app.mjs`
-4. Add these environment variables:
-   - `NODE_ENV=production`
-   - `PORT=10000`
-   - `GEMINI_API_KEY=your_gemini_api_key`
-   - `PUBLIC_BASE_URL=https://your-render-app.onrender.com`
-   - `SIMS_DIRECTORY_PATH=./simulations`
+## Overview
 
-### Vercel
+The platform combines a lightweight Node.js backend with a polished frontend experience. It is designed for students, teachers, and curious learners who want to understand physics through visual intuition rather than only equations.
 
-1. Push the repository to GitHub.
-2. Import the project in Vercel.
-3. Set the environment variables:
-   - `GEMINI_API_KEY=your_gemini_api_key`
-   - `PUBLIC_BASE_URL=https://your-render-app.onrender.com`
-4. Deploy.
+### What the app offers
 
-## 🔐 Environment Variables
+- Natural-language physics prompts
+- AI-generated explanations and extracted parameters
+- Dynamic simulation loading for a wide range of topics
+- Interactive controls for tuning simulation values
+- A modern, responsive interface for desktop and tablet use
 
-Use a file named `.env` locally with values such as:
+## Project Highlights
+
+### Interactive learning experience
+The app takes a user prompt and matches it to an appropriate simulation. Once the simulation is selected, the interface displays the analytical explanation and launches the interactive scene in real time.
+
+### Modern interface
+The UI is built around a clear, dark, high-contrast design with dedicated panels for the prompt, simulation viewport, and solution output.
+
+### Flexible backend architecture
+The backend serves the frontend, handles prompt processing, and exposes health and prompt endpoints for deployment on cloud platforms such as Render.
+
+## Screenshots
+
+![SimuPhysics homepage](docs/screenshots/homepage.svg)
+
+## Tech Stack
+
+- Node.js and Express
+- JavaScript and the browser DOM
+- Matter.js for physics-based rendering
+- Gemini-powered prompt processing and explanation generation
+- Render-friendly deployment structure
+
+## Local Development
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the tests:
+
+```bash
+npm test
+```
+
+Start the server locally:
+
+```bash
+node app.mjs
+```
+
+The app will be available locally at:
+
+```text
+http://localhost:3000
+```
+
+## Environment Variables
+
+A sample environment file is available in [.env.example](.env.example).
+
+Example values:
 
 ```env
 PORT=3000
@@ -41,13 +83,21 @@ PUBLIC_BASE_URL=http://localhost:3000
 SIMS_DIRECTORY_PATH=./simulations
 ```
 
-## ✅ Verification
+## Deployment
 
-Run the following locally before deploying:
+The project is configured for deployment on Render and can also be adapted for Vercel if you want to separate the frontend and backend.
 
-```bash
-npm test
-node app.mjs
-```
+### Render
 
-The app should respond on `/health` once the server is running.
+- Build command: `npm install`
+- Start command: `node app.mjs`
+- Required environment variables:
+  - `NODE_ENV=production`
+  - `PORT=10000`
+  - `GEMINI_API_KEY=your_gemini_api_key`
+  - `PUBLIC_BASE_URL=https://simuphysics-final.onrender.com/`
+  - `SIMS_DIRECTORY_PATH=./simulations`
+
+## License
+
+This project is intended for educational and demonstration purposes.
