@@ -121,29 +121,29 @@ document.addEventListener('DOMContentLoaded', function () {
             oldControls.forEach((node) => node.remove());
         }
 
-        const existingScript = document.getElementById('dynamic-sim-script');
-        if (existingScript) {
-            existingScript.remove();
-        }
+        window.startSimulation = null;
+        window.resetScene = null;
 
-        const script = document.createElement('script');
-        script.id = 'dynamic-sim-script';
-        script.type = 'text/javascript';
-        script.async = false;
-        script.src = `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`;
-
-        script.onload = () => {
-            console.log(`Simulation script loaded: ${url}`);
-            if (callback) callback();
-        };
-
-        script.onerror = () => {
-            console.error(`Error loading script: ${url}`);
-            showError('The simulation script could not be loaded.');
-            hideLoader();
-        };
-
-        document.head.appendChild(script);
+        fetch(`${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`, { cache: 'no-store' })
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error(`Unable to load simulation script: ${response.status}`);
+                }
+                return response.text();
+            })
+            .then((source) => {
+                const wrapped = new Function('window', 'document', 'Matter', 'globalThis', `${source}\nreturn { startSimulation: typeof startSimulation === 'function' ? startSimulation : null, resetScene: typeof resetScene === 'function' ? resetScene : null };`);
+                const result = wrapped(window, document, window.Matter, window);
+                window.startSimulation = result?.startSimulation || null;
+                window.resetScene = result?.resetScene || null;
+                console.log(`Simulation script loaded: ${url}`);
+                if (callback) callback();
+            })
+            .catch((err) => {
+                console.error(`Error loading script: ${url}`, err);
+                showError('The simulation script could not be loaded.');
+                hideLoader();
+            });
     }
 
     function renderParameterControllers(parameters) {
