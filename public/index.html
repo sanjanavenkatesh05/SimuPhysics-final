@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,6 +8,7 @@
     <link rel="stylesheet" href="styles.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+
 <body>
     <div class="container">
         <div class="sidebar">
@@ -16,7 +18,7 @@
             <div class="history" id="history"></div>
         </div>
 
-    
+
         <div class="main">
             <div class="content" id="initial-content">
                 <h1 class="app-title">SimuPhysics</h1>
@@ -29,7 +31,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="content hidden" id="simulation-content">
                 <div class="prompt-display">
                     <span id="prompt-text"></span>
@@ -37,36 +39,37 @@
                 <div class="controllers-area" id="controllers-area"></div>
                 <div style="width:800px;height: 600px;" class="simulation-container">
 
-    <div id="simulation-placeholder">
-        <div id="simulation-placeholder"></div>
-        <div class="controls">
-    <button id="resetBtn" class="reset">
-        <i class="fa-solid fa-rotate-right"></i>
-    </button>
-    <button id="playPauseBtn" class="play">
-        <i class="fa-solid fa-play"></i>
-    </button>
+                    <div id="simulation-placeholder">
+                        <div id="simulation-placeholder"></div>
+                        <div class="controls">
+                            <button id="resetBtn" class="reset">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                            <button id="playPauseBtn" class="play">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
 
-</div>
+                        </div>
 
-    </div>
-</div>
-<div class="solution-box" id="solution-output">
+                    </div>
+                </div>
+                <div class="solution-box" id="solution-output">
                 </div>
 
-</div>
-
-                </div>
             </div>
-            
+
         </div>
     </div>
-    
+
+    </div>
+    </div>
+
     <meta charset="UTF-8">
     <script src="matter.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.19"></script>
-    <script src="script.js"></script>
-    
-        
+    <script type="module" src="script.js"></script>
+
+
 </body>
+
 </html>
