@@ -25,7 +25,7 @@ const allowedOrigins = [
 
 app.use((req, res, next) => {
   const origin = req.headers.origin;
-  const isAllowedOrigin = !origin || allowedOrigins.includes(origin) || origin.endsWith('.onrender.com') || origin.endsWith('.vercel.app');
+  const isAllowedOrigin = !origin || allowedOrigins.includes(origin) || origin.endsWith('.onrender.com') || origin.endsWith('.vercel.app') || origin.endsWith('.github.dev');
 
   if (isAllowedOrigin) {
     res.header('Access-Control-Allow-Origin', origin || '*');
@@ -34,7 +34,8 @@ app.use((req, res, next) => {
 
   if (req.method === 'OPTIONS') {
     res.header('Access-Control-Allow-Methods', 'GET,POST,OPTIONS');
-    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+    res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization,X-Requested-With');
+    res.header('Access-Control-Max-Age', '86400');
     return res.sendStatus(204);
   }
 

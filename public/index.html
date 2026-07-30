@@ -194,7 +194,7 @@
     <script>
         window.__SIMUPHYSICS_API_BASE_URL__ = window.location.hostname === 'localhost'
             ? ''
-            : 'https://simuphysics.onrender.com';
+            : window.location.origin;
     </script>
     <script src="matter.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.19"></script>
