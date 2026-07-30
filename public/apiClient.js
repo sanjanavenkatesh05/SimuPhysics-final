@@ -1,5 +1,18 @@
+const resolveApiBaseUrl = () => {
+    if (typeof window !== 'undefined' && window.__SIMUPHYSICS_API_BASE_URL__) {
+        return window.__SIMUPHYSICS_API_BASE_URL__;
+    }
+
+    if (typeof window !== 'undefined' && window.location?.origin) {
+        return window.location.origin;
+    }
+
+    return '';
+};
+
 export async function submitPrompt(prompt) {
-    const response = await fetch('/api/prompt', {
+    const baseUrl = resolveApiBaseUrl();
+    const response = await fetch(`${baseUrl}/api/prompt`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ prompt })

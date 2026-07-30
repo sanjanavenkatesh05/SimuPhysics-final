@@ -3,6 +3,7 @@ services:
     name: simuphysics
     env: node
     plan: free
+    healthCheckPath: /health
     buildCommand: npm install
     startCommand: node app.mjs
     envVars:
@@ -10,3 +11,7 @@ services:
         value: production
       - key: PORT
         value: 10000
+      - key: PUBLIC_BASE_URL
+        value: https://simuphysics.onrender.com
+      - key: SIMS_DIRECTORY_PATH
+        value: ./simulations

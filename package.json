@@ -19,6 +19,9 @@
     "start": "node app.mjs",
     "test": "node --test"
   },
+  "engines": {
+    "node": "22.x"
+  },
   "dependencies": {
     "@google/genai": "^1.24.0",
     "compute-cosine-similarity": "github:compute-io/cosine-similarity",

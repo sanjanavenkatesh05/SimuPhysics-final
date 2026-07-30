@@ -1,36 +1,53 @@
 # SimuPhysics
 
-SimuPhysics is an **educational physics simulation platform** designed to provide a simple yet effective way to explore fundamental physical concepts. The project is currently in its **early stages** and focuses on core features that allow users to experiment with **basic mechanics** and other introductory-level topics.
+SimuPhysics is an educational physics simulation platform that combines a Node.js backend with a browser-based frontend for interactive physics experiences.
 
-Its goal is to make physics more **accessible** by providing a **clear visual representation** of theoretical principles that are often difficult to imagine from equations alone.
+## 🚀 Deployment
 
----
+The project is now configured for both Render and Vercel.
 
-## 🎯 Objectives
+### Render
 
-- Provide interactive simulations for basic physics concepts.
-- Visualize **motion**, **forces**, and **energy** in real-time.
-- Make learning physics intuitive and engaging.
-- Lay the foundation for more advanced simulations in the future.
+1. Push the repository to GitHub.
+2. Create a new Web Service on Render.
+3. Connect the repository and use:
+   - Build command: `npm install`
+   - Start command: `node app.mjs`
+4. Add these environment variables:
+   - `NODE_ENV=production`
+   - `PORT=10000`
+   - `GEMINI_API_KEY=your_gemini_api_key`
+   - `PUBLIC_BASE_URL=https://your-render-app.onrender.com`
+   - `SIMS_DIRECTORY_PATH=./simulations`
 
----
+### Vercel
 
-## ⚙️ Features
+1. Push the repository to GitHub.
+2. Import the project in Vercel.
+3. Set the environment variables:
+   - `GEMINI_API_KEY=your_gemini_api_key`
+   - `PUBLIC_BASE_URL=https://your-render-app.onrender.com`
+4. Deploy.
 
-- **Interactive simulations** for basic physics concepts  
-- **Real-time visualization** of motion and forces  
-- **Adjustable initial conditions and parameters**  
-- **Simple and clear graphical interface**  
-- **Example setups** for introductory physics topics  
+## 🔐 Environment Variables
 
----
+Use a file named `.env` locally with values such as:
 
-## 🛠️ How It Works
+```env
+PORT=3000
+NODE_ENV=development
+GEMINI_API_KEY=your_gemini_api_key
+PUBLIC_BASE_URL=http://localhost:3000
+SIMS_DIRECTORY_PATH=./simulations
+```
 
-The simulator focuses on **clarity and ease of use**:
+## ✅ Verification
 
-1. Users can **adjust a limited set of parameters**.  
-2. Observe how changes **affect outcomes**.  
-3. Develop an **intuitive understanding** of relationships between **forces, motion, and energy**.  
+Run the following locally before deploying:
 
-While the current version is designed for **learning and classroom demonstrations**, it lays the groundwork for a **more comprehensive system** that can expand to advanced topics and analytical tools.
+```bash
+npm test
+node app.mjs
+```
+
+The app should respond on `/health` once the server is running.

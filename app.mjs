@@ -2,19 +2,22 @@ import express from "express";
 import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
 import fs from "fs";
+import path from "path";
+import { fileURLToPath, pathToFileURL } from "url";
 import { parseParameterArray } from "./lib/responseParser.mjs";
 import { validatePromptInput } from "./lib/promptValidation.mjs";
 import { selectBestSimulation } from "./lib/simulationMatcher.mjs";
 import { config } from "./lib/config.mjs";
+import { shouldAllowPrompt } from "./lib/promptGate.mjs";
+import { isRateLimited } from "./lib/rateLimiter.mjs";
 
 const app = express();
-
-
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 app.use(cors());
 app.use(express.json());
-app.use(express.static("public"));
+app.use(express.static(path.join(__dirname, "public")));
 
 
 const prompt_solution_wrapper = "please solve this physics problem with complete explaination or explain the physics concept without starting with any other words. i just want the solution.give me response only in text. i do NOT want the meta data. i just want the text , written in html form (ex <br> for /n etc). and i dont want it enclosed in any quotes or paranthesis. and do not put newline characters like backslash ns";
@@ -26,17 +29,25 @@ if (!config.geminiApiKey) {
 }
 
 const ai = new GoogleGenAI({ apiKey: config.geminiApiKey });
-const embeddedSimulations = JSON.parse(fs.readFileSync("./embedded_simulations.json", "utf-8"));
+const embeddedSimulationsPath = path.join(__dirname, "embedded_simulations.json");
+const embeddedSimulations = JSON.parse(fs.readFileSync(embeddedSimulationsPath, "utf-8"));
 
 
 
 const port = config.port;
-app.listen(port, () => {
-  console.log(`Server running on http://localhost:${port}`);
-});
+const isDirectRun = process.argv[1] && import.meta.url === pathToFileURL(path.resolve(process.argv[1])).href;
+
+if (isDirectRun) {
+  app.listen(port, "0.0.0.0", () => {
+    console.log(`Server running on http://0.0.0.0:${port}`);
+  });
+}
 
 const simsDirectoryPath = config.simsDirectoryPath;
-app.use('/sims', express.static(simsDirectoryPath));
+const resolvedSimsDirectoryPath = path.isAbsolute(simsDirectoryPath)
+  ? simsDirectoryPath
+  : path.join(__dirname, simsDirectoryPath);
+app.use('/sims', express.static(resolvedSimsDirectoryPath));
 
 function buildErrorResponse(message, status = 500) {
   return {
@@ -55,6 +66,11 @@ app.get(["/health", "/api/health"], (req, res) => {
 });
 
 app.get("/", (req, res) => {
+  const indexPath = path.join(__dirname, "public", "index.html");
+  if (fs.existsSync(indexPath)) {
+    return res.sendFile(indexPath);
+  }
+
   res.json({
     success: true,
     message: "SimuPhysics API is running.",
@@ -75,6 +91,17 @@ app.post(["/api/prompt", "/api/v1/prompt"], async (req, res) => {
   }
 
   const safePrompt = validation.prompt;
+  const gateResult = shouldAllowPrompt(safePrompt);
+
+  if (!gateResult.allowed) {
+    return res.status(400).json(buildErrorResponse(gateResult.reason, 400));
+  }
+
+  const clientKey = req.ip || 'unknown-client';
+  if (isRateLimited(clientKey, 60000, 10)) {
+    return res.status(429).json(buildErrorResponse('Too many requests. Please try again shortly.', 429));
+  }
+
   console.log(" Received prompt:", safePrompt);
 
   try {
@@ -126,5 +153,6 @@ Your entire response must be raw text, starting with [ and ending with ].`;
     res.status(500).json(buildErrorResponse(error.message || "Internal server error", 500));
   }
 
-
 });
+
+export default app;

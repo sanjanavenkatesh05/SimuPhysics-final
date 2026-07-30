@@ -4,72 +4,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SimuPhysics</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>SimuPhysics — Interactive Physics Simulation Platform</title>
+
+    <!-- Google Fonts: Inter & Space Grotesk for clean, high-precision typography -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- FontAwesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Application Stylesheet -->
+    <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
     <div class="container">
-        <div class="sidebar">
-            <button class="new-chat" title="New Chat">
-                <i class="fa-regular fa-plus"></i>
-            </button>
-            <div class="history" id="history"></div>
-        </div>
-
-
-        <div class="main">
-            <div class="content" id="initial-content">
-                <h1 class="app-title">SimuPhysics</h1>
-                <div class="search-container">
-                    <div class="search-box">
-                        <input type="text" id="search-input" placeholder="Generate the simulations ">
-                        <button id="search-button">
-                            <i class="fa-solid fa-paper-plane"></i>
-                        </button>
-                    </div>
-                </div>
+        <!-- Sidebar Navigation & History -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-top">
+                <button class="new-chat-btn" id="new-chat-btn" title="New Session">
+                    <i class="fa-solid fa-plus"></i>
+                    <span>New Simulation</span>
+                </button>
+                <button class="toggle-btn" id="toggle-sidebar" title="Toggle Sidebar">
+                    <i class="fa-solid fa-angles-left"></i>
+                </button>
             </div>
 
-            <div class="content hidden" id="simulation-content">
-                <div class="prompt-display">
-                    <span id="prompt-text"></span>
+            <div class="history-section">
+                <div class="history-header">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span>Recent History</span>
                 </div>
-                <div class="controllers-area" id="controllers-area"></div>
-                <div style="width:800px;height: 600px;" class="simulation-container">
+                <div class="history-list" id="history"></div>
+            </div>
 
-                    <div id="simulation-placeholder">
-                        <div id="simulation-placeholder"></div>
-                        <div class="controls">
-                            <button id="resetBtn" class="reset">
-                                <i class="fa-solid fa-rotate-right"></i>
-                            </button>
-                            <button id="playPauseBtn" class="play">
-                                <i class="fa-solid fa-play"></i>
-                            </button>
+            <div class="sidebar-bottom">
+                <div class="system-status">
+                    <span class="status-indicator"></span>
+                    <span class="status-text">ENGINE ACTIVE</span>
+                </div>
+            </div>
+        </aside>
 
+        <!-- Main Content Area -->
+        <main class="main-content">
+            <!-- Top Header Bar -->
+            <header class="main-header">
+                <div class="brand">
+                    <i class="fa-solid fa-cube brand-icon"></i>
+                    <span class="brand-name">SimuPhysics</span>
+                </div>
+                <div class="header-badge">
+                    <span>RAG ENGINE v2.5</span>
+                </div>
+            </header>
+
+            <!-- Initial Home Screen View -->
+            <section class="content-view" id="initial-content">
+                <div class="hero-section">
+                    <h1 class="app-title">Simulate Physics Concepts</h1>
+                    <p class="hero-subtitle">Enter a physics problem or topic in plain text to generate a real-time,
+                        interactive 2D simulation.</p>
+
+                    <div class="search-container">
+                        <div class="search-box">
+                            <i class="fa-solid fa-magnifying-glass search-icon"></i>
+                            <input type="text" id="search-input"
+                                placeholder="e.g. A 5kg block slides down a 30° incline with friction 0.2..."
+                                autocomplete="off">
+                            <button id="search-button" title="Run Simulation">
+                                <span>Simulate</span>
+                                <i class="fa-solid fa-arrow-right"></i>
+                            </button>
                         </div>
 
+                        <!-- Quick Prompt Suggestion Chips -->
+                        <div class="prompt-chips-container">
+                            <span class="chips-label">Quick Scenarios</span>
+                            <div class="chips-wrapper">
+                                <button class="prompt-chip"
+                                    data-prompt="A projectile launched at 45 degrees with initial velocity 25 m/s free fall motion under gravity.">
+                                    <span>45° Projectile Motion</span>
+                                </button>
+                                <button class="prompt-chip"
+                                    data-prompt="Electric dipole with positive and negative point charges showing electric field vectors.">
+                                    <span>Electric Dipole Field</span>
+                                </button>
+                                <button class="prompt-chip"
+                                    data-prompt="Satellite orbiting around a central planet with escape velocity gravitational motion.">
+                                    <span>Orbital Escape Velocity</span>
+                                </button>
+                                <button class="prompt-chip"
+                                    data-prompt="Newton's cradle with 5 suspended balls showing elastic collision momentum transfer.">
+                                    <span>Newton's Cradle</span>
+                                </button>
+                                <button class="prompt-chip"
+                                    data-prompt="Wheatstone bridge electrical circuit with four resistors and current flow.">
+                                    <span>Wheatstone Bridge</span>
+                                </button>
+                                <button class="prompt-chip"
+                                    data-prompt="Block sliding down an inclined plane with friction force and acceleration.">
+                                    <span>Incline Plane Friction</span>
+                                </button>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                <div class="solution-box" id="solution-output">
+            </section>
+
+            <!-- Active Simulation View -->
+            <section class="content-view hidden" id="simulation-content">
+                <div class="simulation-header">
+                    <button class="back-btn" id="back-to-home">
+                        <i class="fa-solid fa-chevron-left"></i> Back to Generator
+                    </button>
+                    <div class="prompt-display">
+                        <i class="fa-solid fa-terminal"></i>
+                        <span id="prompt-text"></span>
+                    </div>
                 </div>
 
-            </div>
+                <!-- Live Parameter Tuning Controls -->
+                <div class="parameter-card hidden" id="parameter-hud">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fa-solid fa-sliders"></i>
+                            <span>Extracted Parameters</span>
+                        </div>
+                        <span class="card-badge">LIVE ADJUSTMENT</span>
+                    </div>
+                    <div class="controllers-area" id="controllers-area"></div>
+                </div>
 
+                <!-- Simulation Viewport Stage -->
+                <div class="viewport-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fa-solid fa-display"></i>
+                            <span>Simulation Viewport</span>
+                        </div>
+                        <span class="card-badge">MATTER.JS / P5</span>
+                    </div>
+
+                    <div class="simulation-container" id="simulation-container">
+                        <div id="simulation-placeholder"></div>
+                        <div class="controls-overlay">
+                            <button id="playPauseBtn" class="ctrl-btn play-btn" title="Play/Pause Simulation">
+                                <i class="fa-solid fa-play"></i>
+                            </button>
+                            <button id="resetBtn" class="ctrl-btn reset-btn" title="Reset Simulation State">
+                                <i class="fa-solid fa-rotate-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- AI Solution Panel -->
+                <div class="solution-card">
+                    <div class="card-header">
+                        <div class="card-title">
+                            <i class="fa-solid fa-square-poll-vertical"></i>
+                            <span>Analytical Solution</span>
+                        </div>
+                        <button class="copy-btn" id="copy-solution-btn" title="Copy Solution">
+                            <i class="fa-regular fa-copy"></i>
+                            <span>Copy Solution</span>
+                        </button>
+                    </div>
+                    <div class="solution-box" id="solution-output"></div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Minimalist Dark Loader Overlay -->
+    <div id="loading-screen" class="loading-overlay hidden">
+        <div class="minimal-spinner"></div>
+        <div class="loading-text-container">
+            <h3 class="loading-title">GENERATING SIMULATION</h3>
+            <p class="loading-status" id="loading-status">Computing Vector Embeddings...</p>
         </div>
     </div>
 
-    </div>
-    </div>
-
-    <meta charset="UTF-8">
+    <!-- Scripts -->
+    <script>
+        window.__SIMUPHYSICS_API_BASE_URL__ = window.location.hostname === 'localhost'
+            ? ''
+            : 'https://simuphysics.onrender.com';
+    </script>
     <script src="matter.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/lil-gui@0.19"></script>
     <script type="module" src="script.js"></script>
-
-
 </body>
 
 </html>
