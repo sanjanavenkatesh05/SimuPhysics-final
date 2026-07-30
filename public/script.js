@@ -11,8 +11,8 @@ let currentScriptUrl = '';
 function showError(message) {
     const solutionOutput = document.getElementById('solution-output');
     if (solutionOutput) {
-        solutionOutput.innerHTML = message 
-            ? `<div class="error-msg" style="color:#ef4444; background:rgba(239,68,68,0.1); padding:12px; border-radius:8px; border:1px solid rgba(239,68,68,0.3);"><i class="fa-solid fa-triangle-exclamation"></i> ${message}</div>` 
+        solutionOutput.innerHTML = message
+            ? `<div class="error-msg" style="color:#ef4444; background:rgba(239,68,68,0.1); padding:12px; border-radius:8px; border:1px solid rgba(239,68,68,0.3);"><i class="fa-solid fa-triangle-exclamation"></i> ${message}</div>`
             : '';
     }
 }
@@ -105,7 +105,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     function stopCurrentSimulation() {
         if (currentRunner) {
-            try { Matter.Runner.stop(currentRunner); } catch (e) {}
+            try { Matter.Runner.stop(currentRunner); } catch (e) { }
             currentRunner = null;
         }
         currentEngine = null;
@@ -113,17 +113,24 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     function loadScript(url, callback) {
-        const oldScript = document.getElementById('dynamic-sim-script');
-        if (oldScript) oldScript.remove();
-
         const simContainer = document.getElementById('simulation-container');
-        const oldCanvas = simContainer.querySelector('canvas');
-        if (oldCanvas) oldCanvas.remove();
+        if (simContainer) {
+            const oldCanvas = simContainer.querySelector('canvas');
+            if (oldCanvas) oldCanvas.remove();
+            const oldControls = simContainer.querySelectorAll('.simulation-controls, .controls-overlay');
+            oldControls.forEach((node) => node.remove());
+        }
+
+        const existingScript = document.getElementById('dynamic-sim-script');
+        if (existingScript) {
+            existingScript.remove();
+        }
 
         const script = document.createElement('script');
         script.id = 'dynamic-sim-script';
         script.type = 'text/javascript';
-        script.src = url;
+        script.async = false;
+        script.src = `${url}${url.includes('?') ? '&' : '?'}t=${Date.now()}`;
 
         script.onload = () => {
             console.log(`Simulation script loaded: ${url}`);
@@ -238,61 +245,66 @@ document.addEventListener('DOMContentLoaded', function () {
                 loadScript(currentScriptUrl, () => {
                     console.log(`Script ${currentScriptUrl} loaded.`);
 
-                    if (typeof startSimulation === 'function') {
-                        stopCurrentSimulation();
-                        const { engine, runner } = startSimulation(currentParams);
-                        currentEngine = engine;
-                        currentRunner = runner;
+                    try {
+                        if (typeof window.startSimulation === 'function') {
+                            stopCurrentSimulation();
+                            const { engine, runner } = window.startSimulation(currentParams);
+                            currentEngine = engine;
+                            currentRunner = runner;
 
-                        const solution = data.solution;
-                        if (sol) {
-                            if (typeof solution === 'string') {
-                                sol.innerHTML = solution;
-                            } else {
-                                sol.textContent = JSON.stringify(solution, null, 2);
+                            const solution = data.solution;
+                            if (sol) {
+                                if (typeof solution === 'string') {
+                                    sol.innerHTML = solution;
+                                } else {
+                                    sol.textContent = JSON.stringify(solution, null, 2);
+                                }
                             }
+                        } else {
+                            console.error('`startSimulation` function not found in loaded script.');
+                            showError('The selected simulation could not be started.');
                         }
-                    } else {
-                        console.error('`startSimulation` function not found in loaded script.');
-                        showError('The selected simulation could not be started.');
-                    }
 
-                    // Setup controls
-                    const oldPlayPauseBtn = document.getElementById('playPauseBtn');
-                    const oldResetBtn = document.getElementById('resetBtn');
-                    
-                    if (oldPlayPauseBtn && oldResetBtn) {
-                        playPauseBtn = oldPlayPauseBtn.cloneNode(true);
-                        resetBtn = oldResetBtn.cloneNode(true);
-                        oldPlayPauseBtn.parentNode.replaceChild(playPauseBtn, oldPlayPauseBtn);
-                        oldResetBtn.parentNode.replaceChild(resetBtn, oldResetBtn);
+                        // Setup controls
+                        const oldPlayPauseBtn = document.getElementById('playPauseBtn');
+                        const oldResetBtn = document.getElementById('resetBtn');
 
-                        isPlaying = false;
-                        playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-
-                        playPauseBtn.addEventListener('click', function () {
-                            if (!currentRunner || !currentEngine) return;
-
-                            isPlaying = !isPlaying;
-                            if (isPlaying) {
-                                Matter.Runner.run(currentRunner, currentEngine);
-                                playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
-                            } else {
-                                Matter.Runner.stop(currentRunner);
-                                playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
-                            }
-                        });
-
-                        resetBtn.addEventListener('click', function () {
-                            if (!currentEngine) return;
+                        if (oldPlayPauseBtn && oldResetBtn) {
+                            playPauseBtn = oldPlayPauseBtn.cloneNode(true);
+                            resetBtn = oldResetBtn.cloneNode(true);
+                            oldPlayPauseBtn.parentNode.replaceChild(playPauseBtn, oldPlayPauseBtn);
+                            oldResetBtn.parentNode.replaceChild(resetBtn, oldResetBtn);
 
                             isPlaying = false;
                             playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
 
-                            if (typeof resetScene === 'function') {
-                                resetScene();
-                            }
-                        });
+                            playPauseBtn.addEventListener('click', function () {
+                                if (!currentRunner || !currentEngine) return;
+
+                                isPlaying = !isPlaying;
+                                if (isPlaying) {
+                                    Matter.Runner.run(currentRunner, currentEngine);
+                                    playPauseBtn.innerHTML = '<i class="fa-solid fa-pause"></i>';
+                                } else {
+                                    Matter.Runner.stop(currentRunner);
+                                    playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+                                }
+                            });
+
+                            resetBtn.addEventListener('click', function () {
+                                if (!currentEngine) return;
+
+                                isPlaying = false;
+                                playPauseBtn.innerHTML = '<i class="fa-solid fa-play"></i>';
+
+                                if (typeof window.resetScene === 'function') {
+                                    window.resetScene();
+                                }
+                            });
+                        }
+                    } catch (err) {
+                        console.error('Simulation startup failed:', err);
+                        showError(err.message || 'The simulation could not be initialized.');
                     }
 
                     hideLoader();
