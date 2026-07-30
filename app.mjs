@@ -1,13 +1,12 @@
 import express from "express";
 import cors from "cors";
 import { GoogleGenAI } from "@google/genai";
-import dotenv from "dotenv";
 import fs from "fs";
 import { parseParameterArray } from "./lib/responseParser.mjs";
 import { validatePromptInput } from "./lib/promptValidation.mjs";
 import { selectBestSimulation } from "./lib/simulationMatcher.mjs";
+import { config } from "./lib/config.mjs";
 
-dotenv.config();
 const app = express();
 
 
@@ -22,22 +21,21 @@ const prompt_solution_wrapper = "please solve this physics problem with complete
 const AI_MODEL = "gemini-2.5-flash";
 const EMBEDDING_MODEL = "gemini-embedding-001";
 
-if (!process.env.GEMINI_API_KEY) {
+if (!config.geminiApiKey) {
   console.warn("GEMINI_API_KEY is not set. AI requests will fail until it is configured.");
 }
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY });
+const ai = new GoogleGenAI({ apiKey: config.geminiApiKey });
 const embeddedSimulations = JSON.parse(fs.readFileSync("./embedded_simulations.json", "utf-8"));
 
 
 
-const port = 3000;
+const port = config.port;
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
 
-
-const simsDirectoryPath = "C:\\simuphysics\\hii";
+const simsDirectoryPath = config.simsDirectoryPath;
 app.use('/sims', express.static(simsDirectoryPath));
 
 function buildErrorResponse(message, status = 500) {
@@ -95,7 +93,7 @@ app.post(["/api/prompt", "/api/v1/prompt"], async (req, res) => {
     console.log("parameters list->", bestMatch.parameters);
 
     const scriptUrl = `/sims/${bestMatch.script}`;
-    if (!process.env.GEMINI_API_KEY) {
+    if (!config.geminiApiKey) {
       return res.status(500).json(buildErrorResponse("GEMINI_API_KEY is not configured.", 500));
     }
     const prompt_wrapper = `You are a highly specialized AI designed to act as a physics problem parser. Your only function is to read a physics problem and extract the values for a predefined list of parameters.Analyze the physics problem provided below: ${safePrompt}  For each parameter in the following list, extract its numerical value. ${JSON.stringify(bestMatch.parameters)}. If a parameter is not mentioned in the problem, you MUST assign its value as null.Your response must be a list of objects, with each object containing a single key-value pair.

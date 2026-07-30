@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: simuphysics
+    env: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node app.mjs
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: PORT
+        value: 10000

@@ -16,6 +16,7 @@
   "type": "module",
   "main": "blockonsurface.js",
   "scripts": {
+    "start": "node app.mjs",
     "test": "node --test"
   },
   "dependencies": {
