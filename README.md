@@ -31,10 +31,6 @@ The UI is built around a clear, dark, high-contrast design with dedicated panels
 ### Flexible backend architecture
 The backend serves the frontend, handles prompt processing, and exposes health and prompt endpoints for deployment on cloud platforms such as Render.
 
-## Screenshots
-
-![SimuPhysics homepage](docs/screenshots/homepage.svg)
-
 ## Tech Stack
 
 - Node.js and Express
